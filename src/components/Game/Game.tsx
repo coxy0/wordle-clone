@@ -6,7 +6,7 @@ const Game = () => {
   return (
     <div id="game-wrapper">
       <GameBoard />
-      <GameKeyboard />
+      <GameKeyboard onClick={() => {}} />
     </div>
   );
 };
