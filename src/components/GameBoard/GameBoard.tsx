@@ -26,6 +26,11 @@ const GameBoard = () => {
     })();
   }, []);
 
+  const resetGame = () => {
+    setWords(["", "", "", "", "", ""]);
+    setActiveRow(0);
+  };
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (keyHeld) return;
@@ -43,8 +48,7 @@ const GameBoard = () => {
 
           if (activeRow === 5) {
             console.info(`Word was: ${answer}`);
-            setWords(["", "", "", "", "", ""]);
-            setActiveRow(0);
+            resetGame();
           }
         }
 
@@ -74,23 +78,18 @@ const GameBoard = () => {
           return (
             <div key={index} className="game-board-row">
               {letters.map((letter, index) => {
-                let backgroundColour: string;
-                if (!guessed) backgroundColour = "transparent";
-                else {
-                  const absent: string = "#3a3a3c";
-                  const present: string = "#b59f3b";
-                  const correct: string = "#538d4e";
-
-                  if (!answer.includes(letter)) backgroundColour = absent;
-                  else backgroundColour = present;
-                  if (letter === answer[index]) backgroundColour = correct;
-                }
+                const backgroundColour = !guessed
+                  ? ""
+                  : !answer.includes(letter)
+                  ? " tile-absent"
+                  : letter !== answer[index]
+                  ? " tile-present"
+                  : " tile-correct";
 
                 return (
                   <div
                     key={index}
-                    style={{ backgroundColor: backgroundColour }}
-                    className="game-board-tile"
+                    className={`game-board-tile${backgroundColour}`}
                   >
                     {letter.toUpperCase()}
                   </div>

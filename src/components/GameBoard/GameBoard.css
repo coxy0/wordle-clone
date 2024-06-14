@@ -28,3 +28,15 @@
   color: white;
   border: 2px solid rgb(80, 80, 80);
 }
+
+.tile-absent {
+  background-color: #3a3a3c;
+}
+
+.tile-present {
+  background-color: #b59f3b;
+}
+
+.tile-correct {
+  background-color: #538d4e;
+}

@@ -1,8 +1,10 @@
 import "./GameKeyboard.css";
 
-interface Props {}
+interface Props {
+  onClick: () => void;
+}
 
-const GameKeyboard = ({}: Props) => {
+const GameKeyboard = ({ onClick }: Props) => {
   const buttons: string[][] = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -22,6 +24,7 @@ const GameKeyboard = ({}: Props) => {
                   ? " game-keyboard-key-big"
                   : ""
               }`}
+              onClick={onClick}
             >
               {button}
             </button>
